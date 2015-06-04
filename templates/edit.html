@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Post </title>
+</head>
+<body>
+    <h1>Editing Post</h1>
+    <a href="/viewposts">Back</a>
+    <form action="/edit/{{ id }}" method = "post">
+        
+        <div class="field">
+            <label for="title">Title</label><br>
+            <input type="text" name="title" value = "{{ title }}">
+        </div>
+        {% if picURL != "" %}
+            <img src="{{ picURL }}" width="200px" alt="No picture">
+        {% endif %}
+        <div class="field">
+            <label for="message">Message</label><br>
+            <textarea name="message" id="" cols="30" rows="10">{{ message }}</textarea>
+        </div>
+        <div class="field">
+            <label for="picurl">Picture URL</label><br>
+            <input type="text" name = "picurl" value = "{{ picURL }}">
+        </div>
+        <input type="submit" value = "Update">
+    </form>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Posts</title>
+</head>
+<body>
+    <h1>View/Edit Posts</h1>
+    <a href="/home">Back</a>
+    <br>
+    {% for post in posts %}
+
+        {% if posts|length >= 1 and post != "no posts!" %}
+            <h3>{{ post.title }}</h3>
+            {% if picURL != "" %}
+                <img src="{{ post.picURL }}" width="200px" alt="No Picture">
+            {% endif %}
+            <p>
+                {{ post.message }}
+            </p>
+            <a href="/updatepost/{{ post.id }}">Edit</a> | 
+            <a href="/delete/{{ post.id }}">Delete</a>
+        {% else %}
+            <h3>{{ post }}</h3>
+        {% endif %}
+        <hr>
+    {% endfor %}
+</body>
+</html>

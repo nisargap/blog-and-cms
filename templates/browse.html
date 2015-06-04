@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Browse Blogs</title>
+</head>
+<body>
+    <h1>Browse Blogs</h1>
+    <a href="/home">Back</a>
+    {% for user in usernames %}
+
+        <li><a href = "/blog/{{ user.username }}">{{ user.username }} </a></li>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome to Nisarga's Blog Engine</h1>
+
+    <h3>Registration Form</h3>
+    <form id = "register" action="/register" method="post">
+        <div class="field">
+            <label for="username">Username</label><br>
+            <input type="text" id="username" name="username">
+        </div>
+        <div class="field">
+            <label for="password">Password</label><br>
+            <input type="password" id="password" name="password">
+        </div>
+        <div class="field">
+            <label for="passwordAgain">Password Again</label><br>
+            <input type="password" id="passwordAgain" name="passwordAgain">
+        </div>
+        <input type="hidden" name="registrationToken" value = "{{ registrationToken }}">
+        <input type="submit" name="registerUser" value="Register">
+    </form>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <br>
+    <h3>Login Form</h3>
+    <form id = "login" action="/login" method="post">
+        <div class="field">
+            <label for="username">Username</label><br>
+            <input type="text" id="username" name="username">
+        </div>
+        <div class="field">
+            <label for="password">Password</label><br>
+            <input type="password" id="password" name="password">
+        </div>
+        <input type="hidden" name="loginToken" value = "{{ loginToken }}">
+        <input type="submit" name="loginUser" value="Login">
+    </form>
+    <h3>About</h3>
+    <p>This blog engine is created in Python and allows the users to: 
+        <ul>
+            <li>Post blog posts</li>
+            <li>Change user credentials</li>
+            <li>Post comments to blog posts</li>
+        </ul>
+    </p>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+        var frm = $('#register');
+        frm.submit(function (ev) {
+
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function (data) {
+                    $('body').html(data);
+                }
+            });
+
+            ev.preventDefault();
+        });
+
+        var frmLog = $('#login');
+        frmLog.submit(function (ev) {
+
+            $.ajax({
+                type: frmLog.attr('method'),
+                url: frmLog.attr('action'),
+                data: frmLog.serialize(),
+                success: function (result) {
+
+                    $('body').html(result);
+                }
+            });
+
+            ev.preventDefault();
+        });
+    </script>
+</body>
+</html>

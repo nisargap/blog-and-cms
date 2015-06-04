@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Members Area</title>
+</head>
+<body>
+    <h1>Welcome {{ user }}</h1>
+
+    <ul>
+        <li><a href="/addpost">Add New Post</a></li>
+        <li><a href="/viewposts">View/Edit Posts</a></li>
+        <li><a href="/blog/{{ user }}">View My Blog</a></li>
+        <li><a href="/blogsettings">Blog Settings</a></li>
+        <li><a href="/browse">Browse Blogs</a></li>
+        <li><a href="/settings">Account Settings</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</body>
+</html>
